@@ -71,6 +71,18 @@ let pizzaSeasonings = function(seasonings){
   }
 }
 
+let setPizzaCost = function(pizzasArray){
+  pizzasArray.forEach(element => {
+    let size = element.size;
+    let cheeses = element.cheeses;
+    let veggies = element.veggies;
+    let meats = element.meats;
+    let seasonings = element.seasonings;
+    pizzaCost = pizzaSize(size) + pizzaCheesesAndVeggies(size, cheeses, veggies) + pizzaMeats(size, meats) + pizzaSeasonings(seasonings)
+    element.pizzaCost = pizzaCost;
+  });
+}
+
 function MakePizza(size, sauce, cheeses, veggies, meats, seasonings, pizzaCost){
   this.size = size;
   this.sauce = sauce;
