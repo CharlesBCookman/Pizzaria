@@ -83,7 +83,7 @@ let setPizzaCost = function(pizzasArray){
   });
 }
 
-function MakePizza(size, sauce, cheeses, veggies, meats, seasonings, pizzaCost){
+function MakePizza(size, sauce, cheeses, veggies, meats, seasonings, pizzaCost, pizzaID){
   this.size = size;
   this.sauce = sauce;
   this.cheeses = cheeses;
@@ -91,4 +91,5 @@ function MakePizza(size, sauce, cheeses, veggies, meats, seasonings, pizzaCost){
   this.meats = meats;
   this.seasonings = seasonings;
   this.pizzaCost = pizzaCost;
+  this.pizzaID = pizzaID;
 }
