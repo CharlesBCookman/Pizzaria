@@ -1,12 +1,14 @@
 let pizzaSize = function(size) {
   if(size === "Small"){
-    return 8;
+    return 7;
   } else if(sizeType === "Medium"){
-    return 12;
+    return 11;
   } else if(sizeType === "Large"){
-    return 15;
+    return 14;
   } else if(sizeType === "Xlarge"){
-    return 18;
+    return 17;
+  } else {
+    console.log("Select a pizza");
   }
 }
 
@@ -43,8 +45,9 @@ let pizzaCheesesAndVeggies = function(size, cheeses, veggies) {
     } else {
       cost = (toppingsNumber - 2) * 2.5
       return cost;
+    }
   }
-}
+  console.log("check cheese and vaggies")
 }
 
 let pizzaMeats = function(size, meats){
@@ -62,13 +65,16 @@ let pizzaMeats = function(size, meats){
     cost = meats.length * 3.5
     return cost;
   }
+  return cost;
 }
 
 let pizzaSeasonings = function(seasonings){
   cost = 0;
   if(seasonings.length > 1){
     cost = seasonings.length * (0.5);
+    return cost;
   }
+  return cost;
 }
 
 let setPizzaCost = function(pizzasArray){
@@ -92,4 +98,9 @@ function MakePizza(size, sauce, cheeses, veggies, meats, seasonings, pizzaCost, 
   this.seasonings = seasonings;
   this.pizzaCost = pizzaCost;
   this.pizzaID = pizzaID;
+}
+
+window.onload = function(){
+  let totalCost = []
+  const selectSize = document.querySelector("#sizes");
 }
