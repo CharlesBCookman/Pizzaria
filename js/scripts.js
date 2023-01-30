@@ -101,6 +101,35 @@ function MakePizza(size, sauce, cheeses, veggies, meats, seasonings, pizzaCost, 
 }
 
 window.onload = function(){
-  let totalCost = []
+  let totalOrder = [];
+  let size = "";
+  let sauce = "";
+  let cheeses = [];
+  let veggies = [];
+  let meats = [];
+  let seasonings = [];
   const selectSize = document.querySelector("#sizes");
+  let sizesRadios = document.getElementsByName("pizza-size");
+  showSize = document.querySelector("#selected-size");
+  selectSize.onclick = function(){
+    sizesRadios.forEach(element => {
+      if(element.checked){
+        size = element.value
+        showSize.innerText = size;
+      }
+    });
+  }
+let sauceRadios = getElementsByName("sauces");
+let cheesesArray = getElementsByName
+let getPizzaToppings = function(){
+  sauceRadios.forEach(element => {
+    if(element.checked){
+      sauce = element.value
+    }
+  });
+}
+  const addToOrder = document.querySelector("#add-to-order");
+  addToOrder.onclick = function(){
+
+  }
 }
