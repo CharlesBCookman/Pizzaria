@@ -1,4 +1,27 @@
-let pizzaSize = function(size) {
+function MakePizza(size, sauce, cheeses, veggies, meats, seasonings, pizzaID){
+  this.size = size;
+  this.sauce = sauce;
+  this.cheeses = cheeses;
+  this.veggies = veggies;
+  this.meats = meats;
+  this.seasonings = seasonings;
+  this.pizzaCost = 0;
+  this.pizzaID = pizzaID;
+
+  MakePizza.prototype.costCalculator = () => {
+    if(size === "Small"){
+      this.pizzaCost += (7 + cheeses.length + veggies.length + (meats.length * 1.5) ;
+    } else if(size === "Medium"){
+      return 11;
+    } else if(size === "Large"){
+      return 14;
+    } else if(size === "Xlarge"){
+      return 17;
+    } 
+  }
+}
+
+function pizzaSize(size) {
   if(size === "Small"){
     return 7;
   } else if(size === "Medium"){
@@ -10,7 +33,7 @@ let pizzaSize = function(size) {
   } 
 }
 
-let pizzaCheesesAndVeggies = function(size, cheeses, veggies) {
+function pizzaCheesesAndVeggies(size, cheeses, veggies) {
   console.log(size);
   console.log(cheeses);
   console.log(veggies);
@@ -51,8 +74,8 @@ let pizzaCheesesAndVeggies = function(size, cheeses, veggies) {
   console.log("check cheese and veggies");
 }
 
-let pizzaMeats = function(size, meats){
-  cost = 0;
+function pizzaMeats(size, meats){
+  let cost = 0;
   if(size === "Small"){
     cost = meats.length * 1.5
     return cost;
@@ -69,8 +92,8 @@ let pizzaMeats = function(size, meats){
   return cost;
 }
 
-let pizzaSeasonings = function(seasonings){
-  cost = 0;
+function pizzaSeasonings(seasonings){
+  let cost = 0;
   if(seasonings.length > 1){
     cost = seasonings.length * (0.5);
     return cost;
@@ -78,25 +101,12 @@ let pizzaSeasonings = function(seasonings){
   return cost;
 }
 
-let setPizzaCost = function(pizzasArray){
-  pizzasArray.forEach(element => {
-    let size = element.size;
-    let cheeses = element.cheeses;
-    let veggies = element.veggies;
-    let meats = element.meats;
-    let seasonings = element.seasonings;
-    pizzaCost = pizzaSize(size) + pizzaCheesesAndVeggies(size, cheeses, veggies) + pizzaMeats(size, meats) + pizzaSeasonings(seasonings);
-    element.pizzaCost = pizzaCost;
-    return pizzaCost;
-  });
-}
-
-let cheesesArray = function(){
+let cheesesArray = () => {
   let array = [];
   let elements = document.querySelectorAll('input[name="cheeses"]:checked');
   console.log(elements);
   if(elements !== null){
-    return 0;
+    return array;
   }
   elements.forEach((element) => {
     array.push(element.value);
@@ -104,12 +114,12 @@ let cheesesArray = function(){
   return array;
 }
 
-let veggiesArray = function(){
+let veggiesArray = () => {
   let array = [];
   let elements = document.querySelectorAll('input[name="veggies-fruits"]:checked');
   console.log(elements);
   if(elements !== null){
-    return 0;
+    return array;
   }
   elements.forEach((element) => {
     array.push(element.value);
@@ -117,39 +127,32 @@ let veggiesArray = function(){
   return array;
 }
 
-let meatsArray = function(){
+let meatsArray = () => {
   let array = [];
   let elements = document.querySelectorAll('input[name="meats"]:checked');
   if(elements !== null){
-    return 0;
+    return array;
   }
   elements.forEach((element) => {
     array.push(element.value);
   })
+  console.log(array);
   return array;
 }
 
-seasoningsArray = function(){
+let seasoningsArray = () => {
   let array = [];
   elements = document.querySelectorAll('input[name="seasonings"]:checked');
   if(elements !== null){
   }
   elements.forEach((element) => {
-    element.push(element.value);
+    array.push(element.value);
   })
+  console.log(array);
   return array;
 }
 
-function MakePizza(size, sauce, cheeses, veggies, meats, seasonings, pizzaCost, pizzaID){
-  this.size = size;
-  this.sauce = sauce;
-  this.cheeses = cheeses;
-  this.veggies = veggies;
-  this.meats = meats;
-  this.seasonings = seasonings;
-  this.pizzaCost = pizzaCost;
-  this.pizzaID = pizzaID;
-}
+
 
 window.addEventListener("load", function(){
   console.log("page loading");
@@ -184,3 +187,23 @@ window.addEventListener("load", function(){
     console.log(totalOrder);
   });
 });
+
+// function setPizzaCost(nodeArray){
+//   let pizzaCost = 0
+//   let size = "";
+//   let cheeses = [];
+//   let veggies = [];
+//   let meats = [];
+//   let seasonings = [];
+//   nodeArray.forEach(element => {
+//     let size = element.size;
+//     let cheeses = element.cheeses;
+//     let veggies = element.veggies;
+//     let meats = element.meats;
+//     let seasonings = element.seasonings;
+//   });
+//     pizzaCost += (pizzaSize(size) + pizzaCheesesAndVeggies(size, cheeses, veggies) + pizzaMeats(size, meats) + pizzaSeasonings(seasonings));
+//     element.pizzaCost = pizzaCost;
+
+//   return pizzaCost;
+// }
