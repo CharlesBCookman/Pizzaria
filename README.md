@@ -1,3 +1,41 @@
+# _Cookman's Pizzaria_
+
+#### By _**Charles Cookman**_
+
+#### _Practice website for ordering pizza._
+
+## Technologies Used
+
+* _Coding languages: HTML, CSS, and Javascript_
+* _Git and GitHub_
+* _Visual Studio Code_
+
+
+## Description
+
+_This page is a practice project for placing an order using an object and using that to calculate the cost of a pizza order._
+
+## Setup/Installation Requirements
+
+* _To view the github repository visit: https://github.com/CharlesBCookman/Pizzaria_
+* __
+* _in a simple_
+* _easy-to-understand_
+* _format_
+
+_{Leave nothing to chance! You want it to be easy for potential users, employers and collaborators to run your app. Do I need to run a server? How should I set up my databases? Is there other code this application depends on? We recommend deleting the project from your desktop, re-cloning the project from GitHub, and writing down all the steps necessary to get the project working again.}_
+
+## Known Bugs
+
+* _Any known issues_
+* _should go here_
+
+## License
+
+_{Let people know what to do if they run into any issues or have questions, ideas or concerns.  Encourage them to contact you or make a contribution to the code.}_
+
+Copyright (c) _date_ _author name(s)_
+
 MakePizza()
 
 Describe: This constructor will make a pizza object that has the key value for pizza Size/type, Sauce, Veggies/Fruits, Meats, Seasonings and cost(yet to be calculated).

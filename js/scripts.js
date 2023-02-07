@@ -18,7 +18,7 @@ let pizzaCheesesAndVeggies = function(size, cheeses, veggies) {
   let toppingsNumber = 0;
   if(size === "Small"){
     toppingsNumber = cheeses.length + veggies.length
-    if(toppingsNumber <= 2){
+    if(toppingsNumber < 3){
       return 0;
     } else {
       cost = (toppingsNumber - 2) * 1;
@@ -93,27 +93,38 @@ let setPizzaCost = function(pizzasArray){
 
 let cheesesArray = function(){
   let array = [];
-  elements = document.querySelectorAll('input[name="cheeses"]:checked');
+  let elements = document.querySelectorAll('input[name="cheeses"]:checked');
+  console.log(elements);
+  if(elements !== null){
+    return 0;
+  }
   elements.forEach((element) => {
-    element.push(element);
+    array.push(element.value);
   })
   return array;
 }
 
 let veggiesArray = function(){
   let array = [];
-  elements = document.querySelectorAll('input[name="veggies-fruits"]:checked');
+  let elements = document.querySelectorAll('input[name="veggies-fruits"]:checked');
+  console.log(elements);
+  if(elements !== null){
+    return 0;
+  }
   elements.forEach((element) => {
-    element.push(element);
+    array.push(element.value);
   })
   return array;
 }
 
 let meatsArray = function(){
   let array = [];
-  elements = document.querySelectorAll('input[name="meats"]:checked');
+  let elements = document.querySelectorAll('input[name="meats"]:checked');
+  if(elements !== null){
+    return 0;
+  }
   elements.forEach((element) => {
-    element.push(element);
+    array.push(element.value);
   })
   return array;
 }
@@ -121,8 +132,10 @@ let meatsArray = function(){
 seasoningsArray = function(){
   let array = [];
   elements = document.querySelectorAll('input[name="seasonings"]:checked');
+  if(elements !== null){
+  }
   elements.forEach((element) => {
-    element.push(element);
+    element.push(element.value);
   })
   return array;
 }
@@ -138,29 +151,36 @@ function MakePizza(size, sauce, cheeses, veggies, meats, seasonings, pizzaCost, 
   this.pizzaID = pizzaID;
 }
 
-window.onload = function(){
+window.addEventListener("load", function(){
+  console.log("page loading");
   let totalOrder = [];
   let size = document.querySelector('input[name="pizza-size"]:checked');
-  let sauce = document.querySelector('input[name="sauces"]:checked');
-  let cheeses = cheesesArray();
-  let veggies = veggiesArray();
-  let meats = meatsArray();
-  let seasonings = seasoningsArray();
   let pizzaCost = 0;
   let pizzaID = 0;
-  const selectSize = document.querySelector("#sizes");
   showSize = document.querySelector("#selected-size");
+  showSize.innerText = size.value;
+  const selectSize = document.querySelector("#sizes");
   selectSize.onclick = function(){
-        showSize.innerText = size.value;
-  }
+    let size = document.querySelector('input[name="pizza-size"]:checked');
+    showSize.innerText = size.value;
+  };
   const addToOrder = document.querySelector("#add-to-order");
   let total = document.querySelector("#order-total")
   console.log(pizzaCost);
-  addToOrder.onclick = function(){
+  addToOrder.addEventListener("click", function(event) { 
+    let cheeses = cheesesArray();
+    let veggies = veggiesArray();
+    let meats = meatsArray();
+    let seasonings = seasoningsArray();
+    let sauce = document.querySelector('input[name="sauces"]:checked'); 
+    console.log("button press")
+    console.log(pizzaCost);
+    let size = document.querySelector('input[name="pizza-size"]:checked');
+    event.preventDefault();
     pizzaID = pizzaID++;
     totalOrder.push(new MakePizza(size.value, sauce.value, cheeses.value, veggies.value, meats.value, seasonings.value, pizzaCost, pizzaID));
     pizzaCost = setPizzaCost(totalOrder);
     total.innerText = ("$ " + parseInt(pizzaCost));
     console.log(totalOrder);
-  }
-}
+  });
+});
