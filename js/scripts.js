@@ -9,105 +9,26 @@ function MakePizza(size, sauce, cheeses, veggies, meats, seasonings, pizzaID){
   this.pizzaID = pizzaID;
 
   MakePizza.prototype.costCalculator = () => {
-    if(size === "Small"){
-      this.pizzaCost += (7 + cheeses.length + veggies.length + (meats.length * 1.5) ;
+    if(this.size === "Small"){
+      this.pizzaCost = (7 + cheeses.length + veggies.length + (meats.length * 1.5));
+      return this.pizzaCost;
     } else if(size === "Medium"){
-      return 11;
+      this.pizzaCost = (7 + (cheeses.length * 1.5) + (veggies.length * 1.5) + (meats.length * 2));
+      return this.pizzaCost;
     } else if(size === "Large"){
-      return 14;
+      this.pizzaCost = (7 + (cheeses.length * 2) + (veggies.length * 2) + (meats.length * 2.75));
+      return this.pizzaCost;
     } else if(size === "Xlarge"){
-      return 17;
+      this.pizzaCost = (7 + (cheeses.length * 2.5) + (veggies.length * 2.5) + (meats.length * 3.5));
+      return this.pizzaCost;
     } 
   }
 }
 
-function pizzaSize(size) {
-  if(size === "Small"){
-    return 7;
-  } else if(size === "Medium"){
-    return 11;
-  } else if(size === "Large"){
-    return 14;
-  } else if(size === "Xlarge"){
-    return 17;
-  } 
-}
-
-function pizzaCheesesAndVeggies(size, cheeses, veggies) {
-  console.log(size);
-  console.log(cheeses);
-  console.log(veggies);
-  let cost = 0;
-  let toppingsNumber = 0;
-  if(size === "Small"){
-    toppingsNumber = cheeses.length + veggies.length
-    if(toppingsNumber < 3){
-      return 0;
-    } else {
-      cost = (toppingsNumber - 2) * 1;
-    }
-  } else if(size === "Medium"){
-    toppingsNumber = cheeses.length + veggies.length
-    if(toppingsNumber <= 2){
-      return 0;
-    } else {
-      cost = (toppingsNumber - 2) * 1.5
-      return cost;
-    }
-  } else if(size === "Large"){
-    toppingsNumber = cheeses.length + veggies.length
-    if(toppingsNumber <= 2){
-      return 0;
-    } else {
-      cost = (toppingsNumber - 2) * 2
-      return cost;
-    }
-  } else if(size === "Xlarge"){
-    toppingsNumber = cheeses.length + veggies.length
-    if(toppingsNumber <= 2){
-      return 0;
-    } else {
-      cost = (toppingsNumber - 2) * 2.5
-      return cost;
-    }
-  }
-  console.log("check cheese and veggies");
-}
-
-function pizzaMeats(size, meats){
-  let cost = 0;
-  if(size === "Small"){
-    cost = meats.length * 1.5
-    return cost;
-  } else if(size === "Medium"){
-    cost = meats.length * 2
-    return cost;
-  } else if(size === "Large"){
-    cost = meats.length * 2.75
-    return cost;
-  } else if(size === "Xlarge"){
-    cost = meats.length * 3.5
-    return cost;
-  } else
-  return cost;
-}
-
-function pizzaSeasonings(seasonings){
-  let cost = 0;
-  if(seasonings.length > 1){
-    cost = seasonings.length * (0.5);
-    return cost;
-  }
-  return cost;
-}
 
 let cheesesArray = () => {
   let array = [];
   let elements = document.querySelectorAll('input[name="cheeses"]:checked');
-  console.log(elements);
-  if(elements !== null){
-    return array;
-  }
   elements.forEach((element) => {
     array.push(element.value);
   })
@@ -117,10 +38,6 @@ let cheesesArray = () => {
 let veggiesArray = () => {
   let array = [];
   let elements = document.querySelectorAll('input[name="veggies-fruits"]:checked');
-  console.log(elements);
-  if(elements !== null){
-    return array;
-  }
   elements.forEach((element) => {
     array.push(element.value);
   })
@@ -130,9 +47,6 @@ let veggiesArray = () => {
 let meatsArray = () => {
   let array = [];
   let elements = document.querySelectorAll('input[name="meats"]:checked');
-  if(elements !== null){
-    return array;
-  }
   elements.forEach((element) => {
     array.push(element.value);
   })
@@ -143,8 +57,6 @@ let meatsArray = () => {
 let seasoningsArray = () => {
   let array = [];
   elements = document.querySelectorAll('input[name="seasonings"]:checked');
-  if(elements !== null){
-  }
   elements.forEach((element) => {
     array.push(element.value);
   })
@@ -168,8 +80,7 @@ window.addEventListener("load", function(){
     showSize.innerText = size.value;
   };
   const addToOrder = document.querySelector("#add-to-order");
-  let total = document.querySelector("#order-total")
-  console.log(pizzaCost);
+  let total = document.querySelector("#order-total");
   addToOrder.addEventListener("click", function(event) { 
     let cheeses = cheesesArray();
     let veggies = veggiesArray();
@@ -181,8 +92,7 @@ window.addEventListener("load", function(){
     let size = document.querySelector('input[name="pizza-size"]:checked');
     event.preventDefault();
     pizzaID = pizzaID++;
-    totalOrder.push(new MakePizza(size.value, sauce.value, cheeses.value, veggies.value, meats.value, seasonings.value, pizzaCost, pizzaID));
-    pizzaCost = setPizzaCost(totalOrder);
+    totalOrder.push(new MakePizza(size, sauce.value, cheeses, veggies, meats, seasonings, pizzaID));
     total.innerText = ("$ " + parseInt(pizzaCost));
     console.log(totalOrder);
   });
@@ -207,3 +117,73 @@ window.addEventListener("load", function(){
 
 //   return pizzaCost;
 // }
+
+// function pizzaSize(size) {
+//   if(size === "Small"){
+//     return 7;
+//   } else if(size === "Medium"){
+//     return 11;
+//   } else if(size === "Large"){
+//     return 14;
+//   } else if(size === "Xlarge"){
+//     return 17;
+//   } 
+// }
+
+// function pizzaCheesesAndVeggies(size, cheeses, veggies) {
+  //   console.log(size);
+  //   console.log(cheeses);
+  //   console.log(veggies);
+  //   let cost = 0;
+  //   let toppingsNumber = 0;
+  //   if(size === "Small"){
+  //     toppingsNumber = cheeses.length + veggies.length
+  //     if(toppingsNumber < 3){
+  //       return 0;
+  //     } else {
+  //       cost = (toppingsNumber - 2) * 1;
+  //     }
+  //   } else if(size === "Medium"){
+  //     toppingsNumber = cheeses.length + veggies.length
+  //     if(toppingsNumber <= 2){
+  //       return 0;
+  //     } else {
+  //       cost = (toppingsNumber - 2) * 1.5
+  //       return cost;
+  //     }
+  //   } else if(size === "Large"){
+  //     toppingsNumber = cheeses.length + veggies.length
+  //     if(toppingsNumber <= 2){
+  //       return 0;
+  //     } else {
+  //       cost = (toppingsNumber - 2) * 2
+  //       return cost;
+  //     }
+  //   } else if(size === "Xlarge"){
+  //     toppingsNumber = cheeses.length + veggies.length
+  //     if(toppingsNumber <= 2){
+  //       return 0;
+  //     } else {
+  //       cost = (toppingsNumber - 2) * 2.5
+  //       return cost;
+  //     }
+  //   }
+  //   console.log("check cheese and veggies");
+  // }
+  // function pizzaMeats(size, meats){
+    //   let cost = 0;
+    //   if(size === "Small"){
+    //     cost = meats.length * 1.5
+    //     return cost;
+    //   } else if(size === "Medium"){
+    //     cost = meats.length * 2
+    //     return cost;
+    //   } else if(size === "Large"){
+    //     cost = meats.length * 2.75
+    //     return cost;
+    //   } else if(size === "Xlarge"){
+    //     cost = meats.length * 3.5
+    //     return cost;
+    //   } else
+    //   return cost;
+    // }
