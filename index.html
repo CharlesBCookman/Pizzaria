@@ -2,8 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/css/styles.css" type="text/css">
   <script src="js/scripts.js"></script>
   <title>Cookman's Pizzaria</title>
@@ -13,7 +11,6 @@
   <h3>Made with love for those you love, and always love yourself</h3>
   <br><br>
   <h2>Select your pizza's size: <span id="selected-size"></span></h2>
-
   <form id="sizes">
     <div class="sizes-divs">
       <label for="small">Small</label>
@@ -33,7 +30,7 @@
     </div>
     <h5>Small starts at $7, Medium starts at $11, Large starts at $14, and Extra Large starts at $17</h5>
   </form>
-  <h3>Sauces</h3>
+  <h3>Sauces: <span id="selected-sauce"></span></h3>
   <form id="sauces">
     <label for="marinara">Marinara</label>
     <input type="radio" name="sauces" id="marinara" value="Marinara" checked><br>
@@ -45,9 +42,9 @@
     <input type="radio" name="sauces" id="pesto" value="Pesto">
   </form>
   <h2>Toppings</h2>
-  <h3>Cheeses</h3>
+  <h3>Cheeses: <span id="selected-cheeses"></span></h3>
   <form id="cheeses">
-    <p>For each Cheese: Small: $1.00, Medium: $1.50, Large: $2.00, Extra Large: $2.50</p>
+    <p>One cheese comes with each Pizza, for each addiional Cheese: Small: $1.00, Medium: $1.50, Large: $2.00, Extra Large: $2.50</p>
     <label for="mozzarella">Mozzarella:</label>
     <input type="checkbox" id="mozzarella" value="Mozzarella" name="cheeses" checked>
     <label for="cheddar">Cheddar:</label>
@@ -61,34 +58,34 @@
     <label for="ricotta">Ricotta:</label>
     <input type="checkbox" id="ricotta" value="Ricotta Cheese" name="cheeses">
   </form>
-  <h3>Veggies/Fruits</h3>
+  <h3>Plant Toppings: <span id="selected-nonmeats"></span></h3>
   <p>For each veggie or fruit: Small: $1.00,  Medium: $1.50, Large: $2.00, Extra Large: $2.50</p>
-  <form id="veggies-fruits">
+  <form id="nonmeats">
     <label for="onions">Onions:</label>
-    <input type="checkbox" id="onions" value="Onions" name="veggies-fruits">
+    <input type="checkbox" id="onions" value="Onions" name="nonmeats">
     <label for="olives">Black Olives:</label>
-    <input type="checkbox" id="olives" value="Olives" name="veggies-fruits">
+    <input type="checkbox" id="olives" value="Olives" name="nonmeats">
     <label for="mushrooms">Mushrooms:</label>
-    <input type="checkbox" id="mushrooms" value="Mushrooms" name="veggies-fruits">
+    <input type="checkbox" id="mushrooms" value="Mushrooms" name="nonmeats">
     <label for="green-peppers">Green Peppers:</label>
-    <input type="checkbox" id="green-peppers" value="Green Peppers" name="veggies-fruits">
+    <input type="checkbox" id="green-peppers" value="Green Peppers" name="nonmeats">
     <label for="jalapeños">Jalapeños:</label>
-    <input type="checkbox" id="jalapeños" value="Jalapeños" name="veggies-fruits">
+    <input type="checkbox" id="jalapeños" value="Jalapeños" name="nonmeats">
     <br>
     <label for="red-peppers">Roasted Red Peppers:</label>
-    <input type="checkbox" id="red-peppers" value="Red Peppers" name="veggies-fruits">
+    <input type="checkbox" id="red-peppers" value="Red Peppers" name="nonmeats">
     <label for="spinach">Spinach:</label>
-    <input type="checkbox" id="spinach" value="Spinach" name="veggies-fruits">
+    <input type="checkbox" id="spinach" value="Spinach" name="nonmeats">
     <label for="pineapple">Pineapple:</label>
-    <input type="checkbox" id="pinapple" value="Pineapple" name="veggies-fruits">
+    <input type="checkbox" id="pinapple" value="Pineapple" name="nonmeats">
     <label for="tomatoes">Tomatoes:</label>
-    <input type="checkbox" id="tomatoes" value="Tomatoes" name="veggies-fruits">
+    <input type="checkbox" id="tomatoes" value="Tomatoes" name="nonmeats">
     <label for="avacado">Avacado:</label>
-    <input type="checkbox" id="avacado" value="Avacado" name="veggies-fruits">
+    <input type="checkbox" id="avacado" value="Avacado" name="nonmeats">
     <label for="tofu">Tofu:</label>
-    <input type="checkbox" id="tofu" value="Tofu" name="veggies-fruits">
+    <input type="checkbox" id="tofu" value="Tofu" name="nonmeats">
   </form>
-  <h3>Meats</h3>
+  <h3>Meats: <span id="selected-meats"></span></h3>
   <p>For each Meat: Small: $1.50, Medium: $2.00, Large: $2.75, Extra Large: $3.50</p>
   <form id="meats">
     <label for="pepperoni">Pepperoni:</label>
@@ -111,7 +108,7 @@
     <label for="bacon">Bacon:</label>
     <input type="checkbox" id="bacon" value="Bacon" name="meats">
   </form>
-  <h3>Seasonings</h3>
+  <h3>Seasonings: <span id="selected-seasonings"></span></h3>
   <form id="seasonings">
     <label for="paprika">Paprika</label>
     <input type="checkbox" id="paprika" value="Paprika" name="seasonings">
@@ -124,11 +121,12 @@
     <label for="secret-sauce">Secret Sauce</label>
     <input type="checkbox" id="secret-sauce" value="Secret Sauce" name="seasonings">
   </form>
-
-  <form ></form>
-  <br><br><br>
-  <button id="add-to-order">Add pizza to order</button>
-  <br><br><br><br>
-  <h1>Total: <span id="order-total"></Total:span></h1>
+  <form >
+    <br><br><br>
+    <input id="pizza-name" type="text" placeholder="name pizza">
+    <button id="add-to-order">Add pizza to order</button>
+    <br><br><br><br>
+    <h1>Total: <span id="order-total"></Total:span></h1>
+  </form>
 </body>
 </html>
